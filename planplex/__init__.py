@@ -110,6 +110,13 @@ class Project(Object):
         response = self.session.rawRequest(self.url + '/summary')
         return json.loads(response.text)
 
+    def chats(self, identifier=None):
+        if identifier is None:
+            response = self.session.rawRequest(self.url + '/chats/status')
+        else:
+            response = self.session.rawRequest(self.url + '/chats/' + str(identifier))
+        return json.loads(response.text)
+
     @property
     def url(self):
         return self.__url
