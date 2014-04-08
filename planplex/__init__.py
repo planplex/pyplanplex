@@ -106,6 +106,10 @@ class Project(Object):
         return map(lambda t: Task(self, t),
                    json.loads(response.text))
 
+    def summary(self):
+        response = self.session.rawRequest(self.url + '/summary')
+        return json.loads(response.text)
+
     @property
     def url(self):
         return self.__url
